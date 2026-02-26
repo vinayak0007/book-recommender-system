@@ -11,28 +11,6 @@ The goal of this project was not only to build a model, but to evaluate multiple
 
 ---
 
-# Dataset Overview
-
-| Metric | Value |
-|--------|-------|
-| Total Interactions | ~1,000,000 |
-| Users | ~150,000 |
-| Books | ~9,575 |
-| Chapters | ~50,000 |
-| Avg Books per User | ~6.6 |
-
-### Dataset Characteristics
-
-- Implicit feedback only (chapter read = 1 interaction)
-- No ratings
-- No timestamps
-- Large candidate space (9575 books)
-- Sparse user to book interaction matrix
-
-This sparsity significantly affects collaborative filtering performance.
-
----
-
 # Project Structure
 
 ```
@@ -56,12 +34,39 @@ book-recommender/
 
 ---
 
+
+# Data Overview & Initial Inspection
+
+| Metric | Value |
+|--------|-------|
+| Total Interactions | ~1,000,000 |
+| Users | ~150,000 |
+| Books | ~9,575 |
+| Chapters | ~50,000 |
+| Avg Books per User | ~6.6 |
+
+---
+
+### Dataset Characteristics
+
+- Implicit feedback only (chapter read = 1 interaction)
+- No ratings
+- No timestamps
+- Large candidate space (9575 books)
+- Sparse user to book interaction matrix
+
+The user–book interaction matrix contains ~1M interactions out of ~1.44B possible user–book pairs (~0.07% density), making it over **99.9%** sparse.
+This sparsity significantly affects collaborative filtering performance.
+
+---
+
 # Next Chapter Recommendation
 
 For each `(user, book)` pair:
 
 1. Identify highest `chapter_sequence_no` read  
 2. Recommend next chapter:
+
 
 \[
 NextChapter = max(sequence) + 1
@@ -75,7 +80,51 @@ This deterministic progression-based approach:
 
 ---
 
-# Book Recommendation Models Evaluated
+# Evaluation Strategy
+**Why We Used Leave-One-Out (LOO) Evaluation?** <br>
+
+In recommendation systems, especially with implicit feedback datasets, traditional train-test splits are not ideal because:
+- Data is highly sparse
+- Users have very few interactions
+- The task is typically next-item prediction
+
+In our dataset:
+- ~1M interactions
+- ~150K users
+- ~9.5K books
+- ~5 interactions per user (on average)
+
+Because user interaction history is limited, we used Leave-One-Out (LOO) evaluation per user.
+
+**What is Leave-One-Out?**
+
+For each user:
+- Keep all but one interaction for training
+- Hold out one interaction (usually the latest) for testing
+- Train the model
+- Check whether the held-out item appears in Top-K recommendations
+- 
+This simulates a realistic scenario:
+“Given a user’s past behavior, can we predict their next interaction?”
+
+**Why LOO is Suitable Here?**
+
+- Works well for implicit feedback
+- Fair evaluation across users
+- Avoids users disappearing from test set
+- Particularly effective for ranking-based evaluation
+
+Since the goal is ranking items, not predicting ratings, LOO is more appropriate than random row splits.
+
+---
+
+# Evaluation Metrics
+
+We evaluate the recommender using ranking-based metrics:
+**Recall@10**
+**NDCG@10**
+
+# Models Considered:
 
 Multiple approaches were tested:
 
@@ -127,7 +176,7 @@ Score = 0.6 × ContentSim + 0.4 × Popularity
 ```
 
 **Recall@10 ≈ 0.0085–0.0087**  
-**Lift over Random ≈ 8×**
+**Lift over Random ≈ 8X**
 
 This performed comparably to popularity baseline and was selected for robustness.
 
