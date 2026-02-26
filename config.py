@@ -1,0 +1,38 @@
+# config.py
+
+# =========================
+# 📂 DATA PATHS
+# =========================
+
+DATA_PATH = "data/"
+
+INTERACTIONS_FILE = DATA_PATH + "interactions.csv"
+CHAPTERS_FILE = DATA_PATH + "chapters.csv"
+
+
+# =========================
+# 🧪 EVALUATION SETTINGS
+# =========================
+
+TOP_K = 10
+SAMPLE_USERS = 20000
+RANDOM_STATE = 42
+
+
+# =========================
+# 🧠 MODEL PARAMETERS
+# =========================
+
+# Content Hybrid Weights
+CONTENT_WEIGHT = 0.6
+POPULARITY_WEIGHT = 0.4
+
+# TF-IDF Parameters
+TFIDF_MIN_DF = 2
+
+
+# =========================
+# 📊 EXPERIMENT SETTINGS
+# =========================
+
+VERBOSE = True
