@@ -81,9 +81,9 @@ Multiple approaches were tested:
 
 ### 1] Popularity Baseline
 
-\[
-Score(book) = \frac{\text{interaction count}}{\text{total interactions}}
-\]
+```
+Score(book) = interaction_count / total_interactions
+```
 
 **Recall@10 ≈ 0.0087**
 
@@ -106,9 +106,9 @@ Underperformed popularity due to sparse interactions and weak collaborative over
 
 Cosine similarity based on user co-read patterns:
 
-\[
-Sim(i,j) = \frac{|Users(i) \cap Users(j)|}{\sqrt{|Users(i)| \cdot |Users(j)|}}
-\]
+```
+Sim(i, j) = |Users(i) ∩ Users(j)| / sqrt( |Users(i)| × |Users(j)| )
+```
 
 **Recall@10 ≈ 0.0005**
 
@@ -122,9 +122,9 @@ Collapsed due to extreme sparsity.
 - User profile = mean vector of books read  
 - Hybrid scoring:
 
-\[
-Score = 0.6 \times ContentSim + 0.4 \times Popularity
-\]
+```
+Score = 0.6 × ContentSim + 0.4 × Popularity
+```
 
 **Recall@10 ≈ 0.0085–0.0087**  
 **Lift over Random ≈ 8×**
@@ -145,9 +145,9 @@ This performed comparably to popularity baseline and was selected for robustness
 
 ### Random Baseline
 
-\[
-\frac{10}{9575} \approx 0.001
-\]
+```
+10 / 9575 ≈ 0.001
+```
 
 Final model achieves ~8× improvement over random ranking.
 
