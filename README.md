@@ -33,24 +33,25 @@ This sparsity significantly affects collaborative filtering performance.
 
 ---
 
-# Project Structure
+# 🏗 Project Structure
 
-
+```
 book-recommender/
 │
 ├── README.md
 ├── config.py
 ├── data/
-│ ├── chapters.csv
-│ └── interactions.csv
+│   ├── chapters.csv
+│   └── interactions.csv
 ├── main.py
 ├── requirements.txt
 └── src/
-├── content_model.py
-├── data_loader.py
-├── evaluation.py
-├── next_chapter.py
-└── popularity.py
+    ├── content_model.py
+    ├── data_loader.py
+    ├── evaluation.py
+    ├── next_chapter.py
+    └── popularity.py
+```
 
 
 ---
