@@ -79,7 +79,7 @@ This deterministic progression-based approach:
 
 Multiple approaches were tested:
 
-### 1] Popularity Baseline
+### [1] Popularity Baseline
 
 ```
 Score(book) = interaction_count / total_interactions
@@ -91,7 +91,7 @@ Popularity emerged as a strong baseline.
 
 ---
 
-### 2] Matrix Factorization (ALS)
+### [2] Matrix Factorization (ALS)
 
 - Implicit feedback
 - Leave-one-out validation
@@ -102,7 +102,7 @@ Underperformed popularity due to sparse interactions and weak collaborative over
 
 ---
 
-### 3] Item–Item Collaborative Filtering
+### [3] Item–Item Collaborative Filtering
 
 Cosine similarity based on user co-read patterns:
 
@@ -116,7 +116,7 @@ Collapsed due to extreme sparsity.
 
 ---
 
-### 4] Content + Popularity Hybrid (Final Model)
+### [4] Content + Popularity Hybrid (Final Model)
 
 - TF-IDF on genre tags + author token  
 - User profile = mean vector of books read  
@@ -149,7 +149,7 @@ This performed comparably to popularity baseline and was selected for robustness
 10 / 9575 ≈ 0.001
 ```
 
-Final model achieves ~8× improvement over random ranking.
+Final model achieves ~8X improvement over random ranking.
 
 Given full-catalog ranking and sparse interaction history (~6 books/user), this lift is statistically meaningful.
 
