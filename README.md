@@ -1,4 +1,4 @@
-# 📚 Book Recommendation System
+# Book Recommendation System
 
 This project implements a recommendation system for a digital reading platform.  
 The system is designed to:
@@ -33,7 +33,7 @@ This sparsity significantly affects collaborative filtering performance.
 
 ---
 
-# 🏗 Project Structure
+# Project Structure
 
 ```
 book-recommender/
@@ -56,7 +56,7 @@ book-recommender/
 
 ---
 
-# 📖 Next Chapter Recommendation
+# Next Chapter Recommendation
 
 For each `(user, book)` pair:
 
