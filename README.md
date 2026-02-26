@@ -27,7 +27,7 @@ The goal of this project was not only to build a model, but to evaluate multiple
 - No ratings
 - No timestamps
 - Large candidate space (9575 books)
-- Sparse user–book interaction matrix
+- Sparse user to book interaction matrix
 
 This sparsity significantly affects collaborative filtering performance.
 
